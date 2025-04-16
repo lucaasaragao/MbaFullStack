@@ -1,4 +1,6 @@
-# 🔍 1. Pontos para Reflexão Inicial
+# Aula 1 - MBA FullStack Arquitetura e Designer de Software
+
+## 🔍 1. Pontos para Reflexão Inicial
 
 ## 🧠 Ser Multidisciplinar e Multifuncional
 A habilidade de entender não apenas o código, mas também o contexto de negócio, experiência do usuário (UX) e comunicação é essencial para qualquer desenvolvedor moderno. Isso permite que você contribua mais significativamente para o sucesso do produto e entenda como seu trabalho se encaixa na visão maior.

@@ -91,3 +91,6 @@ Framework é um facilitador no desenvolvimento de software. Ele fornece uma estr
 - Um endpoint é o caminho exposto por um servidor para acessar um recurso via rede (geralmente HTTP).
 - Em REST, cada endpoint representa uma operação sobre um recurso.
 - **Exemplo:** `GET /api/products` → Recupera todos os produtos.
+- ![Fluxo-Aula-2](https://github.com/user-attachments/assets/b5427bc4-28a6-438b-bf62-8ce1211e6028)
+
+

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementação do Desafio Dorotech - Aula 2</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .intro {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        
+        .author {
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        .image-placeholder {
+            background-color: #f5f5f5;
+            border: 1px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            color: #666;
+        }
+        
+        .conclusion {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin-top: 30px;
+        }
+        
+        .next-steps {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #e8f4fc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Implementação do Desafio Dorotech - Aula 2</h1>
+    
+    <p class="intro">
+        Olá, meu nome é <span class="author">Lucas</span>!<br>
+        Neste post, quero compartilhar com você como resolvi o desafio da Dorotech para programadores Júnior, 
+        proposto durante a disciplina de Arquitetura de Software do curso de pós-graduação em Desenvolvimento FullStack.
+    </p>
+    
+    <p>
+        O desafio completo pode ser acessado <a href="#">neste link</a>.
+    </p>
+    
+    <p>
+        A proposta era desenvolver uma aplicação simples focando nos princípios básicos do CRUD, simulando o nível 
+        esperado de um desenvolvedor iniciante. Vamos lá?
+    </p>
+    
+    <h2>1. Entendimento do Desafio</h2>
+    <p>
+        O enunciado do desafio nos orientava a:
+    </p>
+    <ul>
+        <li>Criar um sistema que executasse um CRUD (Create, Read, Update, Delete) para gerenciar produtos eletrônicos.</li>
+        <li>Utilizar um banco de dados NoSQL (DynamoDB seria um diferencial).</li>
+        <li>Utilizar o Spring Framework (sendo Quarkus também aceito como diferencial).</li>
+        <li>Definir a tabela Products com os seguintes campos:
+            <ul>
+                <li>name</li>
+                <li>description</li>
+                <li>price</li>
+                <li>amount</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <p>
+        <strong>Observação:</strong> O desafio também orientava que "fazer o melhor" não significava "fazer algo complexo". 
+        A simplicidade e a clareza eram prioridades.
+    </p>
+    
+    <h2>2. Criando o Repositório no GitHub</h2>
+    <p>
+        Antes de começar a codificação, criei um repositório no GitHub para versionar o projeto desde o início.
+    </p>
+    
+    <!-- [Imagem do repositório criado no GitHub] -->
+    <div class="image-placeholder">
+        Imagem do repositório criado no GitHub
+    </div>
+    
+    <h2>3. Gerando o Projeto com o Spring Initializr</h2>
+    <p>
+        Utilizei o Spring Initializr para gerar o esqueleto do projeto.<br>
+        As principais configurações escolhidas foram:
+    </p>
+    <ul>
+        <li>Project: Maven</li>
+        <li>Language: Java</li>
+        <li>Spring Boot: 3.x</li>
+        <li>Dependencies:
+            <ul>
+                <li>Spring Web</li>
+                <li>Spring Data</li>
+                <li>Lombok</li>
+                <li>DynamoDB (ou o driver que você escolheu)</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <!-- [Imagem da configuração do Spring Initializr] -->
+    <div class="image-placeholder">
+        Imagem da configuração do Spring Initializr
+    </div>
+    
+    <h2>4. Importando o Projeto para a IDE</h2>
+    <p>
+        Após baixar o projeto, importei-o para a IDE (utilizei o IntelliJ IDEA).
+    </p>
+    
+    <!-- [Imagem da importação do projeto na IDE] -->
+    <div class="image-placeholder">
+        Imagem da importação do projeto na IDE
+    </div>
+    
+    <p>
+        Certifiquei-me de que o Maven baixasse todas as dependências corretamente para evitar problemas futuros.
+    </p>
+    
+    <h2>5. Desenhando o Fluxo (UML)</h2>
+    <p>
+        Antes de iniciar a codificação, elaborei um diagrama UML simples para visualizar o fluxo do CRUD:
+    </p>
+    <ul>
+        <li>Create: Adicionar um novo produto</li>
+        <li>Read: Buscar produto por ID e listar todos os produtos</li>
+        <li>Update: Atualizar informações de um produto existente</li>
+        <li>Delete: Remover um produto</li>
+    </ul>
+    
+    <!-- [Imagem do Diagrama UML do fluxo CRUD] -->
+    <div class="image-placeholder">
+        Imagem do Diagrama UML do fluxo CRUD
+    </div>
+    
+    <h2>6. Iniciando as Codificações</h2>
+    <p>
+        Segui uma abordagem progressiva para a implementação:
+    </p>
+    
+    <p>
+        <strong>Model:</strong><br>
+        Criei a classe ProductModel representando a entidade do banco de dados, com os atributos: id, name, description, price e amount.
+    </p>
+    
+    <p>
+        <strong>DTOs:</strong><br>
+        Criei DTOs para criação (CreateProductDTO), atualização (UpdateProductDTO) e retorno (ProductResponseDTO).
+    </p>
+    
+    <p>
+        <strong>Repository:</strong><br>
+        Implementei a interface ProductRepository estendendo as funcionalidades de acesso ao DynamoDB.
+    </p>
+    
+    <p>
+        <strong>Service:</strong><br>
+        Criei o ProductService e sua implementação ProductServiceImpl, encapsulando a lógica de negócio.
+    </p>
+    
+    <p>
+        <strong>Controller:</strong><br>
+        Por fim, implementei o ProductController, expondo as rotas REST necessárias para o CRUD.
+    </p>
+    
+    <!-- [Imagens de trechos de código dos principais pacotes: model, DTO, repository, service e controller] -->
+    <div class="image-placeholder">
+        Imagens de trechos de código dos principais pacotes: model, DTO, repository, service e controller
+    </div>
+    
+    <h2>7. Primeiros Commits</h2>
+    <p>
+        A cada etapa concluída (Model, DTOs, Repository, Service, Controller), realizei commits pequenos e frequentes.<br>
+        Esse método facilita a rastreabilidade do que foi implementado, além de ajudar a identificar rapidamente onde algo pode ter dado errado.
+    </p>
+    
+    <!-- [Imagem de uma timeline de commits no GitHub] -->
+    <div class="image-placeholder">
+        Imagem de uma timeline de commits no GitHub
+    </div>
+    
+    <div class="conclusion">
+        <h2>Conclusão</h2>
+        <p>
+            O objetivo deste desafio foi colocar em prática a construção de um CRUD simples, utilizando boas práticas como separação de camadas e versionamento de código.<br>
+            Além disso, exercitamos a criação de projetos Spring Boot focando em clareza e organização, habilidades fundamentais para o crescimento na carreira de desenvolvimento.
+        </p>
+    </div>
+    
+    <div class="next-steps">
+        <h2>🚀 Próximos Passos</h2>
+        <p>
+            Pretendo evoluir esse projeto adicionando:
+        </p>
+        <ul>
+            <li>Testes unitários</li>
+            <li>Validações dos DTOs</li>
+            <li>Integração com Swagger para documentação das APIs</li>
+            <li>Melhorias no tratamento de exceções</li>
+        </ul>
+    </div>
+    
+    <p>
+        Muito obrigado pela leitura!<br>
+        Se tiver sugestões ou quiser compartilhar como você implementaria esse desafio, deixe nos comentários! 🙌
+    </p>
+</body>
+</html>

@@ -5,11 +5,14 @@
     margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
 }
 
+h1 {
+     font-family: "Audiowide", sans-serif;
+}
+
 h2 {
     display: flex;
     background-color:  rgb(121, 198, 249);;
-    color:black
-    text-decoration: underline;
+    color:black;
 }
 
  img {
@@ -17,3 +20,9 @@ h2 {
      height: 150px;
      border-radius: 50%;
  }
+
+ .audiowide-regular {
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
